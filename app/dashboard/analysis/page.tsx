@@ -1,34 +1,60 @@
-'use client'
+// 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import AnalysisStream from '@/components/AnalysisStream'
-import Link from 'next/link'
+// import { useSearchParams } from 'next/navigation'
+// import AnalysisStream from '@/components/AnalysisStream'
+// import Link from 'next/link'
+
+// export default function AnalysisPage() {
+//   const searchParams = useSearchParams()
+//   const resumeId = searchParams.get('resumeId')
+
+//   if (!resumeId) {
+//     return (
+//       <p className="text-red-500">
+//         Resume ID missing. Please upload resume again.
+//       </p>
+//     )
+//   }
+
+//   return (
+//     <div className="space-y-6">
+//       <h1 className="text-xl font-bold">Resume Analysis</h1>
+
+//       {/* ✅ PASS resumeId */}
+//       <AnalysisStream resumeId={resumeId} />
+
+//       <Link
+//         href={`/dashboard/rewrite?resumeId=${resumeId}`}
+//         className="inline-block bg-indigo-600 text-white px-5 py-2 rounded-lg"
+//       >
+//         Rewrite Resume with AI
+//       </Link>
+//     </div>
+//   )
+// }
+
+
+
+import { Suspense } from 'react'
+import AnalysisClient from './AnalysisClient'
 
 export default function AnalysisPage() {
-  const searchParams = useSearchParams()
-  const resumeId = searchParams.get('resumeId')
-
-  if (!resumeId) {
-    return (
-      <p className="text-red-500">
-        Resume ID missing. Please upload resume again.
-      </p>
-    )
-  }
-
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-bold">Resume Analysis</h1>
+      <h1 className="text-xl font-bold">
+        Resume Analysis
+      </h1>
 
-      {/* ✅ PASS resumeId */}
-      <AnalysisStream resumeId={resumeId} />
-
-      <Link
-        href={`/dashboard/rewrite?resumeId=${resumeId}`}
-        className="inline-block bg-indigo-600 text-white px-5 py-2 rounded-lg"
+      {/* ✅ REQUIRED for useSearchParams */}
+      <Suspense
+        fallback={
+          <p className="text-slate-500">
+            Loading resume analysis…
+          </p>
+        }
       >
-        Rewrite Resume with AI
-      </Link>
+        <AnalysisClient />
+      </Suspense>
     </div>
   )
 }
