@@ -41,7 +41,7 @@ import AnalysisClient from './AnalysisClient'
 export default function AnalysisPage() {
   return (
     <div className="space-y-6">
-      <h1 className="text-xl font-bold">
+      <h1 className="text-xl font-bold text-black">
         Resume Analysis
       </h1>
 
