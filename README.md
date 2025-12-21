@@ -129,4 +129,5 @@ Local Development
 - npm run dev
 
 App runs on:
-http://localhost:3000
+- http://localhost:3000
+- https://ai-resume-analyzer-xpjz.vercel.app/auth/login
